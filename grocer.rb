@@ -33,14 +33,14 @@ end
 
 def apply_coupons(cart, coupon)
   coupon.each {|item|
-    name_of_item = item[:item]
-    if cart.has_key?(name_of_item) == true && cart[name_of_item][:count] >= item[:num]
-      cart[name_of_item][:count] = cart[name_of_item][:count] - item[:num]
-      new_item = name_of_item + (" W/COUPON")
-      if cart.has_key?(new_item) == false
-        cart[new_item] = {:price => item[:cost], :clearance => cart[name_of_item][:clearance], :count => 1}
+    item_name = item[:item]
+    if cart.has_key?(item_name) == true && cart[item_name][:count] >= item[:num]
+      cart[item_name][:count] = cart[item_name][:count] - item[:num]
+      item_name_coup = item_name + (" W/COUPON")
+      if cart.has_key?(item_name_coup) == false
+        cart[item_name_coup] = {:price => item[:cost], :clearance => cart[item_name][:clearance], :count => 1}
       else 
-        cart[new_item][:count] += 1
+        cart[item_name_coup][:count] += 1
       end
     end
   }
